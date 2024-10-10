@@ -1,0 +1,17 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata :
+  name : client-depl   #name of deployment
+spec : 
+  replicas : 1 #Defines the number of pod replicas that should be running. In this case, only one pod will be running.
+  selector :
+    matchLabels :
+      app : client #This label selector is used to identify which pods belong to this Deployment. It matches pods that have the label app: client
+  template : #Defines the template for the pods that will be created by this Deployment.
+    metadata :
+      labels :
+        app : client #Labels the pod with app: client. This is important because it ensures that the pod matches the selector defined in the Deployment.
+    spec :
+      containers : #Specifies the containers that will run inside the pod.
+        - name : client #The name of the container is client.
+          image : zyadashraf/client #Specifies the Docker image to use for this container.

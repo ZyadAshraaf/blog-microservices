@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name : event-bus-srv
+spec:
+  type : ClusterIP #Kubernets Maks it ClusterIP by default if i didnt provide it
+  selector :
+    app : event-bus
+  ports : 
+    - name : event-bus
+      protocol : TCP
+      port : 4005
+      targetPort : 4005
+  

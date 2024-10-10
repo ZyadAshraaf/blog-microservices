@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name : client-clusterip-srv #The name of the Service, which must be unique within the Kubernetes namespace. This service is named client-clusterip-srv
+spec:
+  type : ClusterIP #Specifies the type of Service. ClusterIP is the default type, meaning the Service is accessible only within the Kubernetes cluster (internal network). Even if this line is omitted, the service would still default to ClusterIP.
+  selector :
+    app : client #The Service will match and route traffic to Pods with the label app=client. This selector helps the Service find the right Pods to direct traffic to.
+  ports : 
+    - name : client #This is the name of the port, which is optional and can be used for identification.
+      protocol : TCP
+      port : 3000 #The port that the Service will expose to the internal network. This is the port you would use to access the Service within the cluster.
+      targetPort : 3000 #The port on the Pods that the traffic will be forwarded to. In this case, traffic sent to port 4000 on the Service will be forwarded to port 4000 on the Pods selected by the selector.
+  
